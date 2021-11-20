@@ -1,25 +1,48 @@
-import logo from './logo.svg';
 import './App.css';
+// import {connect} from 'react-redux';
+import React from 'react';
+import {BrowserRouter, Route} from 'react-router-dom';
+import Page from './component/views/Page/Page.js';
+import MainLayout from './component/layout/MainLayout/MainLayout.js';
+import Users from './component/views/Users/Users';
+import PropTypes from 'prop-types';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import parseUsers from './utils/parseUsers';
+
+class App extends React.Component{
+  static propTypes = {
+    users: PropTypes.array,
+  }
+
+  constructor(props){
+    super(props);
+    parseUsers(this.props.members, this.props.setStates);
+  }
+
+  componentDidUpdate(prevProps){
+    if(prevProps.users !== this.props.users){
+      parseUsers(this.props.users, this.props.setStates);
+    }
+  }
+
+  // eslint-disable-next-line react/require-render-return
+  render(){
+    return(
+    <BrowserRouter>
+      <MainLayout>
+        <Route exact path='/page' component={Page}/>
+        <Route exact path='/users' component={Users}/>
+        <Route exact path='/usersParse' component={parseUsers}/>
+      </MainLayout>
+    </BrowserRouter>
+    );
+  }
 }
+
+// const mapStateToProps = state => ({
+//   users: state.trips,
+// });
+
+
 
 export default App;
