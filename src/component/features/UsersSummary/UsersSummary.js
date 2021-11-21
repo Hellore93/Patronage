@@ -1,19 +1,21 @@
 import React from 'react';
+import {Row, Col} from 'react-flexbox-grid';
 import PropTypes from 'prop-types';
-// import styles from './UsersSummary.module.scss';
-import {Col} from 'react-flexbox-grid';
 
-const UsersSummary = ({id, name, lastName}) => (
-  <Col lg={4}>
-    <div className={`${id}`}>{name}</div>
-    <div className={`${id}`}>{lastName}</div>
-  </Col>
+
+const UsersSummary = ({name, lastName}) => (
+
+<Col xs={12}>
+  <Row>
+    <h3> {name} Tekst</h3>
+    <h4> {lastName} </h4>
+  </Row>
+</Col>
 );
 
-UsersSummary.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  lastName: PropTypes.string,
-};
 
+UsersSummary.propTypes = {
+  name: PropTypes.string,
+  lasName: PropTypes.string
+};
 export default UsersSummary;

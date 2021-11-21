@@ -1,12 +1,5 @@
-.switchWrapper {
-  position: relative;
+@import './settings.scss';
 
-  > :first-child ~ * {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    animation-name: slide;
-    animation-duration: 2s;
-  }
-} 
+// .root{
+//   background-color: $color-grey;
+// }

@@ -1,0 +1,29 @@
+@import '../../../styles/settings.scss';
+
+.arr{
+  display:flex;
+  flex-direction: row;
+}
+
+.par{
+  border: solid black 2px;
+  color:red;
+}
+
+.table{
+  display: flex;
+  flex-direction: row;
+  border-top: solid 2px rgb(56, 56, 56);
+  border-bottom: solid 2px rgb(56, 56, 56);
+}
+
+.page_container{
+  // display:block;
+  // text-align: center;
+}
+
+.hobbies{
+  display:flex;
+  flex-direction: column;
+  color:red;
+}
