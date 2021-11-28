@@ -18,12 +18,13 @@
 }
 
 .page_container{
-  // display:block;
-  // text-align: center;
+  display:block;
+  text-align: center;
 }
 
 .hobbies{
-  display:flex;
-  flex-direction: column;
-  color:red;
+  p{
+  color:blue;
+  
+  }
 }
