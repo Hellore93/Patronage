@@ -20,10 +20,31 @@ class Page extends React.Component{
       )
     }
 
+    function sort(){
+    Data.sort((a,b) => {
+      // return a.age - b.age;
+
+      let fa = a.lastName.toLowerCase(),
+      fb = b.lastName.toLowerCase();
+
+  if (fa < fb) {
+      return -1;
+  }
+  if (fa > fb) {
+      return 1;
+  }
+  return 0;
+    })
+    Data.forEach((e) => {
+      console.log(`${e.name} ${e.lastName} ${e.age}`)
+    })
+  }
+  console.log(sort());
+
     return(
   <div className={styles.app}>
     <PageNav />
-  {Data.map((post, index)  => {
+  {Data.map((post)  => {
     return(
       <div className={styles.table} key={post.id}>
         <Col className={'col-sm-2 ' + styles.page_container }>{post.name + post.lastName}</Col>

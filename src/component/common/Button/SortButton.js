@@ -2,14 +2,15 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Page from '../../views/Page/Page'
 import PropTypes from 'prop-types';
+import Data from '../../../data/users.json'
 
 class SortButton extends React.Component{
   render(){
 
-    function Sort() {
-      const { post } = this.props;
-  let sortedProducts = [...post];
-  sortedProducts.sort((a, b) => {
+    function Sort(props) {
+      // const {Data} = props;
+      let sortedProducts = [...Data];
+      sortedProducts.sort((a, b) => {
     if (a.name < b.name) {
       return -1;
     }
@@ -20,7 +21,7 @@ class SortButton extends React.Component{
   });
   return (
     <Page>
-
+    <div>Dzialam</div>
     </Page>
   )
     }
@@ -34,7 +35,7 @@ class SortButton extends React.Component{
 
   }
 }
-Button.propTypes = {
-  post: PropTypes.string,
+SortButton.propTypes = {
+  Data: PropTypes.string,
 }
 export default SortButton;
