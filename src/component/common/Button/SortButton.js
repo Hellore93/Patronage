@@ -21,7 +21,7 @@ class SortButton extends React.Component{
   });
   return (
     <Page>
-    <div>Dzialam</div>
+
     </Page>
   )
     }

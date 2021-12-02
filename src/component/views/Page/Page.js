@@ -5,9 +5,9 @@ import styles from './Page.module.scss';
 import PageNav from '../PageNavigation/PageNav';
 import DataHobbies from '../../../data/hobbies.json';
 import PropTypes from 'prop-types';
+import SortTypes from '../../common/SortTypes/SortTypes'
 class Page extends React.Component{
   render(){
-    const {name, hobbiesName} = this.props;
 
     function Hobbies(item){
       let newHobbies = [];
@@ -20,31 +20,14 @@ class Page extends React.Component{
       )
     }
 
-    function sort(){
-    Data.sort((a,b) => {
-      // return a.age - b.age;
-
-      let fa = a.lastName.toLowerCase(),
-      fb = b.lastName.toLowerCase();
-
-  if (fa < fb) {
-      return -1;
-  }
-  if (fa > fb) {
-      return 1;
-  }
-  return 0;
-    })
-    Data.forEach((e) => {
-      console.log(`${e.name} ${e.lastName} ${e.age}`)
-    })
-  }
-  console.log(sort());
+  let currentSort = PageNav.currentSort;
+  // const fn=SortTypes[currentSort];
+  console.log(currentSort);
 
     return(
   <div className={styles.app}>
-    <PageNav />
-  {Data.map((post)  => {
+    <PageNav/>
+  {Data.sort(SortTypes[currentSort]).map((post)  => {
     return(
       <div className={styles.table} key={post.id}>
         <Col className={'col-sm-2 ' + styles.page_container }>{post.name + post.lastName}</Col>
@@ -70,6 +53,7 @@ Page.propTypes = {
   hobby: PropTypes.arrayOf,
   name: PropTypes.string,
   hobbiesName: PropTypes.string,
+  fn: PropTypes.number,
 };
 Page.defaultProps = {
   hobby:[],

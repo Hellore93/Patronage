@@ -1,15 +1,35 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Col} from 'react-flexbox-grid';
 import styles from './PageNav.module.scss';
-import SortButton from '../../common/Button/SortButton'
+import PropTypes from 'prop-types';
 
 class PageNav extends React.Component{
-  render(){
 
+  state = {
+    currentSort: 'default'
+  }
+
+  onSortChange = () => {
+    const {currentSort} = this.state;
+    let nextSort;
+
+    if(currentSort === 'down') nextSort = 'up';
+    else if (currentSort === 'up') nextSort = 'default';
+    else if (currentSort === 'default') nextSort= 'down';
+
+    this.setState({
+      currentSort: nextSort
+    });
+
+  }
+  render(){
+    const {currentSort} = this.state;
+
+    // console.log(currentSort);
     return(
-  <div className={styles.table}>
+  <div className={styles.table} data={currentSort}>
         <Col sm={2}>NAME AND SURNAME
-          <SortButton onClick='App()'></SortButton>
+          <button onClick={this.onSortChange}></button>
         </Col>
         <Col sm={2}>E-MAIL</Col>
         <Col sm={1}>GENDER</Col>
@@ -20,7 +40,10 @@ class PageNav extends React.Component{
         <Col sm={1}>PHONE NUMBER</Col>
   </div>
 )
-
   }
 }
+
+PageNav.propTypes = {
+  currentSort: PropTypes.string,
+};
 export default PageNav;
