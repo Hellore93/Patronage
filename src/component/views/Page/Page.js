@@ -7,8 +7,13 @@ import DataHobbies from '../../../data/hobbies.json';
 import PropTypes from 'prop-types';
 import SortTypes from '../../common/SortTypes/SortTypes'
 class Page extends React.Component{
-  render(){
 
+  state = {currentSortPage: 'down'}
+  handleSortChange = (stateValue) => {
+    this.setState({currentSortPage: stateValue});
+  }
+
+  render(){
     function Hobbies(item){
       let newHobbies = [];
       for(let i=0; i<item.item.length; i++){
@@ -19,18 +24,15 @@ class Page extends React.Component{
         <p>{newHobbies.join(' ')}</p>
       )
     }
-
-  let currentSort = PageNav.currentSort;
-  // const fn=SortTypes[currentSort];
-  console.log(currentSort);
+    const {currentSortPage} = this.state;
 
     return(
   <div className={styles.app}>
-    <PageNav/>
-  {Data.sort(SortTypes[currentSort]).map((post)  => {
+    <PageNav handleOnSortChange = {this.handleSortChange} />
+  {Data.sort(SortTypes[currentSortPage].fn).map((post)  => {
     return(
       <div className={styles.table} key={post.id}>
-        <Col className={'col-sm-2 ' + styles.page_container }>{post.name + post.lastName}</Col>
+        <Col className={'col-sm-2 ' + styles.page_container }>{post.name + ' ' + post.lastName}</Col>
         <Col className={'col-sm-2 ' + styles.page_container + ' ' + styles.new}>{post.email}</Col>
         <Col className={'col-sm-1 ' + styles.page_container}>{post.gender}</Col>
         <Col className={'col-sm-2 ' + styles.page_container}>{post.address}</Col>
@@ -54,6 +56,7 @@ Page.propTypes = {
   name: PropTypes.string,
   hobbiesName: PropTypes.string,
   fn: PropTypes.number,
+  onSortChange: PropTypes.string,
 };
 Page.defaultProps = {
   hobby:[],

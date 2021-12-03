@@ -20,14 +20,12 @@ class PageNav extends React.Component{
     this.setState({
       currentSort: nextSort
     });
-
+    this.props.handleOnSortChange(currentSort);
   }
   render(){
-    const {currentSort} = this.state;
 
-    // console.log(currentSort);
     return(
-  <div className={styles.table} data={currentSort}>
+  <div className={styles.table}>
         <Col sm={2}>NAME AND SURNAME
           <button onClick={this.onSortChange}></button>
         </Col>
