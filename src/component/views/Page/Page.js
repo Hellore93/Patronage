@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import SortTypes from '../../common/SortTypes/SortTypes'
 class Page extends React.Component{
 
-  state = {currentSortPage: 'down'}
+  state = {currentSortPage: 'default'}
   handleSortChange = (stateValue) => {
     this.setState({currentSortPage: stateValue});
   }
@@ -25,6 +25,7 @@ class Page extends React.Component{
       )
     }
     const {currentSortPage} = this.state;
+    console.log(currentSortPage);
 
     return(
   <div className={styles.app}>
