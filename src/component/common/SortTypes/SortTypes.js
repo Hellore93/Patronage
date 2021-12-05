@@ -2,6 +2,10 @@ import PropTypes from 'prop-types';
 
 
 const SortTypes = {
+	default: {
+		class: 'sort',
+		fn: (a, b) => a,
+	},
 	up: {
 		class: 'sort-up',
 		fn: (a, b) => {
@@ -62,10 +66,6 @@ const SortTypes = {
     return 0;
 		}
 	},
-	default: {
-		class: 'sort',
-		fn: (a, b) => a,
-	},
 	ageUp: {
 		class: 'sort-ageUp',
 		fn: (a,b) => a.age - b.age
@@ -73,6 +73,22 @@ const SortTypes = {
 	ageDown: {
 		class: 'sort-ageDown',
 		fn: (a,b) => b.age - a.age
+	},
+	upData: {
+		class: 'sort-upData',
+		fn:(a,b) => {
+			let da = new Date(a.dateOfBirth),
+        db = new Date(b.dateOfBirth);
+    return da - db;
+		}
+	},
+	downData: {
+		class: 'sort-downData',
+		fn:(a,b) => {
+			let da = new Date(a.dateOfBirth),
+        db = new Date(b.dateOfBirth);
+    return db - da;
+		}
 	}
 };
 

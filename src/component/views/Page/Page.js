@@ -5,7 +5,9 @@ import styles from './Page.module.scss';
 import PageNav from '../PageNavigation/PageNav';
 import DataHobbies from '../../../data/hobbies.json';
 import PropTypes from 'prop-types';
-import SortTypes from '../../common/SortTypes/SortTypes'
+import SortTypes from '../../common/SortTypes/SortTypes';
+import Dropdown from 'react-bootstrap/Dropdown';
+import 'bootstrap/dist/css/bootstrap.min.css';
 class Page extends React.Component{
 
   state = {currentSortPage: 'default'}
@@ -25,7 +27,6 @@ class Page extends React.Component{
       )
     }
     const {currentSortPage} = this.state;
-    console.log(currentSortPage);
 
     return(
   <div className={styles.app}>
@@ -43,6 +44,14 @@ class Page extends React.Component{
         </Col>
         <Col className={'col-sm-1 ' + styles.page_container}>{post.dateOfBirth}</Col>
         <Col className={'col-sm-1 ' + styles.page_container}>{post.phoneNumber}</Col>
+
+        <Dropdown>
+          <Dropdown.Toggle variant="success" id="dropdown-basic"></Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item href={`/editId/${post.id}`} >Edit</Dropdown.Item>
+            <Dropdown.Item href="#/action-2">Delete</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </div>
   )
     })}

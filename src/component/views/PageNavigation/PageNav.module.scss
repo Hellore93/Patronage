@@ -6,3 +6,21 @@
   border: solid 2px black;
   text-align: center;
 }
+
+button {
+  border: none;
+  background-color: $color-light;
+}
+
+Col {
+  display:inline-block;
+  position:absolute;
+  flex-direction: row;
+  // flex-direction: row;
+  // justify-content: center;
+  // align-content: center;
+}
+
+p {
+
+}
