@@ -2,8 +2,10 @@ import React from 'react';
 import styles from './Edit.module.scss'
 import PageNav from '../PageNavigation/PageNav';
 import Data from '../../../data/users.json';
-import {Col} from 'react-flexbox-grid';
+import {Col, Row} from 'react-flexbox-grid';
 import DataHobbies from '../../../data/hobbies.json';
+import Dropdown from 'react-bootstrap/Dropdown';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Edit extends React.Component{
 
@@ -12,33 +14,18 @@ class Edit extends React.Component{
     const objectId = window.location.pathname.split('/')[2];
     let parseObject = Data.filter( Data => Data['id'] === objectId);
     const newObj = parseObject[0];
-    // console.log(newObj.hobbies);
 
-    // function Hobbies(defaultValue){
-    //   let newHobbies = [];
-    //   for (let i=0; i<defaultValue.item.length; i++){
-    //     let hobbiesName = DataHobbies.filter(hob => hob.id === newObj.hobbies[i]);
-    //     newHobbies.push(hobbiesName[0].name);
-    //   }
-    //   console.log(newHobbies);
-    // }
-
-    function Hobbies() {
-      let newHobbies = [];
-      for (let i=0; i<newObj.hobbies.length; i++){
-        const newHobbiesValue = newObj.hobbies[i]
-        newHobbies.push(newHobbiesValue);
-        return(
-          <div>{newHobbiesValue}</div>
-        )
-      }
-      console.log(newHobbies);
+    function Hobbies(item){
+        let hobbiesName = DataHobbies.filter(hob => hob.id === item.item);
+      return(
+        <input defaultValue = {hobbiesName[0].name} className={styles.hobby}></input>
+      )
     }
 
     return(
       <div>
         <PageNav></PageNav>
-        <div className={styles.table}>
+        <Row className={styles.table}>
           <Col className={'col-sm-2 '}>
             <input defaultValue={newObj.name + ' ' + newObj.lastName} />
           </Col>
@@ -55,9 +42,16 @@ class Edit extends React.Component{
             <input defaultValue={newObj.age} />
           </Col>
           <Col className={'col-sm-1 '}>
-            <Hobbies></Hobbies>
-
-            <ul className='list-group'></ul>
+            <Dropdown>
+              <Dropdown.Toggle variant="success" id="dropdown-basic"></Dropdown.Toggle>
+              <Dropdown.Menu>
+                {newObj.hobbies.map((post) => {
+                  return(
+                    <Hobbies item={post}></Hobbies>
+                  )
+                })}
+              </Dropdown.Menu>
+            </Dropdown>
           </Col>
           <Col className={'col-sm-1 '}>
             <input defaultValue={newObj.dateOfBirth} />
@@ -65,7 +59,7 @@ class Edit extends React.Component{
           <Col className={'col-sm-1 '}>
             <input defaultValue={newObj.phoneNumber} />
           </Col>
-        </div>
+        </Row>
       </div>
     )
   }

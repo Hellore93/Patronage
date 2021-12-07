@@ -5,6 +5,10 @@ button {
 }
 
 .table {
-  display:flex;
-  flex-direction: row;
+  // height:50px;
+  border: 2px solid black;
+}
+.hobby {
+  width: 100vw/15;
+  color:blue;
 }
