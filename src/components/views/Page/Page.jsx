@@ -34,12 +34,12 @@ class Page extends React.Component{
   {Data.sort(SortTypes[currentSortPage].fn).map((post)  => {
     return(
       <div className={styles.table} key={post.id}>
-        <Col className={'col-sm-2 ' + styles.page_container }>{post.name + ' ' + post.lastName}</Col>
-        <Col className={'col-sm-2 ' + styles.page_container + ' ' + styles.new}>{post.email}</Col>
+        <Col className={'col-sm-2 ' + styles.page_container}>{post.name + ' ' + post.lastName}</Col>
+        <Col className={'col-sm-2 ' + styles.page_container}>{post.email}</Col>
         <Col className={'col-sm-1 ' + styles.page_container}>{post.gender}</Col>
         <Col className={'col-sm-2 ' + styles.page_container}>{post.address}</Col>
         <Col className={'col-sm-1 ' + styles.page_container}>{post.age}</Col>
-        <Col className={'col-sm-1 ' + styles.page_container + ' ' + styles.hobbies}>
+        <Col className={'col-sm-1 ' + styles.page_container}>
         <Hobbies item={post.hobbies}></Hobbies>
         </Col>
         <Col className={'col-sm-1 ' + styles.page_container}>{post.dateOfBirth}</Col>
@@ -48,7 +48,7 @@ class Page extends React.Component{
         <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic"></Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item href={`/editId/${post.id}`} >Edit</Dropdown.Item>
+            <Dropdown.Item href={`/edit/${post.id}`} >Edit</Dropdown.Item>
             <Dropdown.Item href="#/action-2">Delete</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>

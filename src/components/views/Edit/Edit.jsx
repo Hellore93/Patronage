@@ -27,7 +27,7 @@ class Edit extends React.Component{
   }
   onClickOutsideHandler(event) {
     if (this.state.isOpen && !this.toggleContainer.current.contains(event.target)) {
-      this.setState({ isOpen: false });
+      this.setState({ isOpen: true });
     }
   }
   componentDidMount() {
@@ -50,29 +50,31 @@ class Edit extends React.Component{
       )
     }
 
+    const {name, lastName, email, gender, address, age, dateOfBirth, phoneNumber} = parseObject[0]
+    const col2Class = 'col-sm-2'
+    const col1Class = 'col-sm-1'
+
+    function getPropertyColumn(className, defaultValue){
+      return(
+        <Col className={className}>
+          <input defaultValue={defaultValue} />
+        </Col>
+      )
+    }
+
 
     return(
-      <div>
-        <PageNav></PageNav>
+      <>
+        <PageNav />
         <Row className={styles.table}>
-          <Col className={'col-sm-2 '}>
-            <input defaultValue={newObj.name + ' ' + newObj.lastName} className={styles.inputCol2}/>
-          </Col>
-          <Col className={'col-sm-2 '}>
-            <input defaultValue={newObj.email} className={styles.inputCol2}/>
-          </Col>
-          <Col className={'col-sm-1 '}>
-            <input defaultValue={newObj.gender} className={styles.inputCol1}/>
-          </Col>
-          <Col className={'col-sm-2 '}>
-            <input defaultValue={newObj.address} className={styles.inputCol2}/>
-          </Col>
-          <Col className={'col-sm-1 '}>
-            <input defaultValue={newObj.age} className={styles.inputCol1}/>
-          </Col>
-          <Col className={'col-sm-1 '}>
+          {getPropertyColumn(col2Class, name, lastName)}
+          {getPropertyColumn(col2Class, email)}
+          {getPropertyColumn(col1Class, gender)}
+          {getPropertyColumn(col2Class, address)}
+          {getPropertyColumn(col1Class, age)}
+          <Col className={col1Class}>
             <Dropdown className={styles.dropdown}>
-              <Dropdown.Toggle variant="success" id="dropdown-basic"></Dropdown.Toggle>
+              <Dropdown.Toggle variant="success" id="dropdown-basic" />
               <Dropdown.Menu>
                 {newObj.hobbies.map((post) => {
                   return(
@@ -80,7 +82,7 @@ class Edit extends React.Component{
                       <button onClick={this.onClickHandler}>
                         <FontAwesomeIcon icon={faExchangeAlt} className={styles.iconHobby}></FontAwesomeIcon>
                       </button>
-                      <Hobbies item={post}></Hobbies>
+                      <Hobbies item={post} type='button' />
                     </div>
                   )
                 })}
@@ -92,14 +94,10 @@ class Edit extends React.Component{
               </Dropdown.Menu>
             </Dropdown>
           </Col>
-          <Col className={'col-sm-1 '}>
-            <input defaultValue={newObj.dateOfBirth} className={styles.inputCol1}/>
-          </Col>
-          <Col className={'col-sm-1 '}>
-            <input defaultValue={newObj.phoneNumber} className={styles.inputCol1}/>
-          </Col>
+          {getPropertyColumn(col1Class, dateOfBirth)}
+          {getPropertyColumn(col1Class, phoneNumber)}
         </Row>
-      </div>
+      </>
     )
   }
 }
